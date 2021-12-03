@@ -1,5 +1,7 @@
 BeforeDiscovery {
-    Import-Module "$PSScriptRoot/MyCustomAssertions.psm1" -DisableNameChecking
+    Split-Path $PSCommandPath
+    | Join-Path -ch MyCustomAssertions.psm1
+    | Import-Module -DisableNameChecking
 }
 
 BeforeAll {
@@ -7,7 +9,7 @@ BeforeAll {
     # nupkgSettings
     $templateName = "fable-vscode"
     $nupkgId = "Fable.VsCode.Extention.Template"
-    $nupkgPath = Split-Path $PSScriptRoot | Join-Path -ch bin -a Debug, "$nupkgId.*.nupkg" -Resolve
+    $nupkgPath = Split-Path $PSCommandPath | Join-Path -ch .. -a bin, Debug, "$nupkgId.*.nupkg" -Resolve
 
     dotnet new --list
     | Select-String $templateName
@@ -35,7 +37,7 @@ Describe "Should be able to create Project" {
         | Add-Member repository ([pscustomobject]@{type = "git"; url = "" }) -PassThru
         | ConvertTo-Json -Depth 20
         | Set-Content TestDrive:\package.json
-        
+
         New-Item TestDrive:\LICENSE
 
         & $PackageManeger run pack | Should -BeLastExitCode0
