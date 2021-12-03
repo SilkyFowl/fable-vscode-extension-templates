@@ -26,6 +26,16 @@ Describe "Should be able to create Project" {
         @{ PackageManeger = "pnpm" }
     ) {
         dotnet new fable-vscode -p $PackageManeger | Should -BeLastExitCode0
+        
+        & $PackageManeger install | Should -BeLastExitCode0
+        
+        # Dummy settings 
+        $config = Get-Content TestDrive:\package.json | ConvertFrom-Json
+        $config | Add-Member repository ([pscustomobject]@{type="git"; url=""})
+        $config | ConvertTo-Json -Depth 20 | Set-Content TestDrive:\package.json
+        New-Item TestDrive:\LICENSE
+
+        & $PackageManeger run pack | Should -BeLastExitCode0
     }
 
     AfterEach {
