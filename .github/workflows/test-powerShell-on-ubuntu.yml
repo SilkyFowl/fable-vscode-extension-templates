@@ -50,6 +50,15 @@ jobs:
               Run          = @{
                   Path = "tests"
               }
+              TestResult   = @{
+                  Enabled = $true
+                  OutputPath = "testresults/Tests.xml"
+              }
           }
           Invoke-Pester -Configuration $config
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: testresults
+          path: testresults
     if: ${{ always() }}
