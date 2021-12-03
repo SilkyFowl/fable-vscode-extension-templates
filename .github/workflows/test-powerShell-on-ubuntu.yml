@@ -42,6 +42,7 @@ jobs:
       - name: Run Pester
         shell: pwsh
         run: |
+          New-Item -ItemType Directory testresults
           $config = @{
               Run          = @{
                   Path = "tests"
