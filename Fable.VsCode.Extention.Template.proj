@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Fable VsCode Extension</Description>
+    <Authors>SilkyFowl</Authors>
+    <PackageProjectUrl>https://github.com/SilkyFowl/atcoder-fsharp-templates</PackageProjectUrl>
+    <PackageLicense>https://github.com/SilkyFowl/atcoder-fsharp-templates/blob/master/LICENSE</PackageLicense>
+    <RepositoryUrl>https://github.com/SilkyFowl/atcoder-fsharp-templates.git</RepositoryUrl>
+    <PackageTags>fable;template;fsharp;vscode</PackageTags>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageType>Template</PackageType>
+    <Version>0.0.1</Version>
+    <PackProjectInputFile>$(MSBuildProjectFullPath)</PackProjectInputFile>
+    <NoBuild>true</NoBuild>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <TargetFramework>net6.0</TargetFramework>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ExcludeFromPackage>
+        templates\**\.fable\**\*;
+        templates\**\.ionide\**\*;
+        templates\**\.paket\**\*;
+        templates\**\build\**\*;
+        templates\**\dist\**\*;
+        templates\**\node_modules\**\*;
+        templates\**\packages\**\*;
+        templates\**\paket-files\**\*;
+        templates\**\src\bin\**\*;
+        templates\**\src\obj\**\*;
+    </ExcludeFromPackage>
+</PropertyGroup>
+  <ItemGroup>
+    <Content Include="templates/**/*" Exclude="$(ExcludeFromPackage)" >
+    </Content>
+  </ItemGroup>
+</Project>

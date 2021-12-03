@@ -1,0 +1,50 @@
+{
+  "name": "fable-vscode-template",
+  "description": "fable-vscode-template",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.43.0"
+  },
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onCommand:fable-vscode-template.sayHello"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "fable-vscode-template.sayHello",
+        "title": "Say Hello from Fable!"
+      }
+    ]
+  },
+  "scripts": {
+    "install": "dotnet tool restore && dotnet paket update",
+    //#if (packageManeger == "npm")
+    "build": "dotnet fable src -o build --run npm run esbuild",
+    "start": "dotnet fable watch src -s -o build --run npm run esbuild -- --watch",
+    "prepack": "npm run build",
+    "pack": "vsce package",
+    ////#elseif (packageManeger == "yarn")
+    // "build": "dotnet fable src -o build --run yarn run esbuild",
+    // "start": "dotnet fable watch src -s -o build --run yarn run esbuild --watch",
+    // "prepack": "yarn run build",
+    // "pack": "vsce package",
+    ////#elseif (packageManeger == "pnpm")
+    // "build": "dotnet fable src -o build --run pnpm run esbuild",
+    // "start": "dotnet fable watch src -s -o build --run pnpm run esbuild -- --watch",
+    // "pack": "pnpm run build && vsce package",
+    //#endif
+    "esbuild": "node esbuild"
+  },
+  "keywords": [
+    "fable",
+    "fsharp"
+  ],
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "esbuild": "^0.13.15",
+    "vsce": "^2.5.1",
+    "yargs": "^17.3.0"
+  }
+}

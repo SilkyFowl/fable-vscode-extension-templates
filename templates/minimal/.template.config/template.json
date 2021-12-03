@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "SilkyFowl",
+    "classifications": [
+        "Fable",
+        "VsCode"
+    ],
+    "name": "Minimal Fable VsCode Extension",
+    "description": "VS Code Minimal Extensions Written in F#.",
+    "tags": {
+        "language": "F#",
+        "type": "project"
+    },
+    "identity": "Fable.VsCode.Extension",
+    "shortName": "fable-vscode",
+    "sourceName": "fable-vscode-template",
+    "preferNameDirectory": true,
+    "symbols": {
+        "packageManeger": {
+            "type": "parameter",
+            "datatype": "choice",
+            "defaultValue": "npm",
+            "description": "What package manager to use.",
+            "choices": [
+                {
+                    "choice": "npm",
+                    "description": "use npm."
+                },
+                {
+                    "choice": "yarn",
+                    "description": "use yarn."
+                },
+                {
+                    "choice": "pnpm",
+                    "description": "use pnpm."
+                }
+            ]
+        }
+    }
+}
