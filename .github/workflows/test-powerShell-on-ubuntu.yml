@@ -50,11 +50,6 @@ jobs:
                   Enabled = $true
                   OutputPath = "testresults/Tests.xml"
               }
-              CodeCoverage = @{
-                  Enabled = $true
-                  Path    = "src/AtcoderFs.Pwsh"
-                  OutputPath = "testresults/CodeCoverage.xml"
-              }
           }
           Invoke-Pester -Configuration $config
       - name: Upload test results
